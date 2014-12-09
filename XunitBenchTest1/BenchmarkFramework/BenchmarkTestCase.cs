@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,6 +10,7 @@ using Xunit.Sdk;
 
 namespace DevHawk.Xunit
 {
+    [DebuggerDisplay(@"\{ class = {TestMethod.TestClass.Class.Name}, method = {TestMethod.Method.Name}, display = {DisplayName}, skip = {SkipReason} \}")]
     class BenchmarkTestCase : TestMethodTestCase
     {
         public BenchmarkTestCase(ITestMethod testMethod)
