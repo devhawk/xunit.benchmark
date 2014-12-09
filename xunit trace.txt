@@ -1,0 +1,67 @@
+Runner uses Xunit2 as a inner controller
+Xunit2 uses TestFrameworkProxy to determine the correct TestFramework instance to use. Defaults to XunitTestFramework
+Xunit2 calls CreateDiscoverer and CreateExecutor
+	XunitTestFramework.CreateDiscoverer creates new XunitTestFrameworkDiscoverer instance
+	XunitTestFramework.CreateExecutor creates new XunitTestFrameworkExecutor instance
+Xunit2 calls ITestFrameworkExecutor.RunTests with a list of test cases, a message sink and a set of options
+	Base TestFrameworkExecutor class calls abstract RunTestCases method
+	XunitTestFrameworkExecutor.RunTestCases creates a new XunitTestAssemblyRunner and calls RunAsync on it
+Base TestAssemblyRunner.RunAsync calls abstract RunTestCollectionAsync method
+	XunitTestAssemblyRunner.RunTestCollectionAsync creates a new XunitTestCollectionRunner and calls RunAsync on it
+Base TestCollectionRunner.RunAsync calls RunTestClassesAsync method
+	TestCollectionRunner.RunTestClassesAsync groups test cases by class and calls abstract RunTestClassAsync method
+	XunitTestCollectionRunner.RunTestClassAsync creates a new XunitTestClassRunner and calls RunAsync on it
+Base TestClassRunner.RunAsync calls RunTestMethodsAsync method
+	TestClassRunner.RunTestMethodsAsync groups test cases by method calls abstract RunTestMethodAsync method
+	XunitTestClassRunner.RunTestMethodAsync creates a new XunitTestMethodRunner and calls RunAsync on it
+Base TestMethodRunner.RunAsync calls RunTestCasesAsync method
+	TestMethodRunner.RunTestCasesAsync calls abstract RunTestCaseAsync for each test case
+	XunitTestMethodRunner.RunTestCaseAsync calls RunAsync on the test case object
+XunitTestCase.RunAsync creates a new XunitTestCaseRunner and calls RunAsync
+Base TestCaseRunner.RunAsync calls abstract RunTestAsync method
+	XunitTestCaseRunner.RunTestAsync creates a new XunitTestRunner and calls RunAsync
+Base TestRunner.RunAsync calls abstract InvokeTestAsync
+	XunitTestRunner.InvokeTestAsync creates a new XunitTestInvoker and calls RunAsync
+Base TestInvoker.RunAsync creates a test class instance and calls InvokeTestMethodAsync to invoke the test method
+	XunitTestInvoker overrides Before/AfterTestMethodInvokedAsync methods
+
+TestFramework
+	ITestFramework.GetExecutor returns a new ITestFrameworkExecutor
+		BenchmarkTestFramework returns a new BenchmarkTestFrameworkExecutor
+TestFrameworkExecutor
+	Xunit calls ITestFrameworkExecutor.RunTests (void return)
+	TestFrameworkExecutor.RunTests does housekeeping and calls abstract RunTestCases method
+		BenchmarkTestFrameworkExecutor creates a new BenchmarkTestAssemblyRunner and calls RunAsync (Task<RunSummary> return)
+TestAssemblyRunner 
+	RunAsync sets up message bus and calls RunTestCollectionsAsync
+	RunTestCollectionsAsync groups test cases into collections and calls RunTestCollectionAsync for each
+		By default, tests are grouped into collections by class, but tests from seperate classes can be grouped into a single collection with the [Collection] attribute
+	RunTestCollectionAsync is abstract, implemented by the framework specific subclass. 
+		BenchmarkTestAssemblyRunner.RunTestCollectionAsync creates a new BenchmarkTestCollectionRunner and calls RunAsync (Task<RunSummary> return)
+TestCollectionRunner 
+	RunAsync does housekeeping and calls RunTestClassesAsync
+	RunTestClassesAsync groups test cases by test class and calls RunTestClassAsync for each
+	RunTestClassAsync is abstract
+		BenchmarkTestCollectionRunner.RunTestClassAsync creates a new BenchmarkTestClassRunner and calls RunAsync (Task<RunSummary> return)
+TestClassRunner
+	RunAsync does housekeeping and calls RunTestMethodsAsync
+	RunTestMethodsAsync groups test cases by test method and calls RunTestMethodAsync for each
+	RunTestMethodAsync is abstract
+		BenchmarkTestCollectionRunner.RunTestMethodAsync creates a new BenchmarkTestMethodRunner and calls RunAsync (Task<RunSummary> return)
+TestMethodRunner
+	Xunit and Observation use TestCase.RunAsync here
+	RunAsync does housekeeping and calls RunTestCasesAsync
+	RunTestCasesAsync and calls RunTestCaseAsync for each TestCase
+	RunTestCaseAsync is abstract
+		BenchmarkTestMethodRunner.RunTestCaseAsync creates a new BenchmarkTestCaseRunner and calls RunAsync (Task<RunSummary> return)
+TestCaseRunner
+	RunAsync does housekeeping and calls RunTestAsync
+	RunTestAsync is async
+		BenchmarkTestCaseRunner.RunTestAsync creates a new BenchmarkTestRunner and calls RunAsync (Task<RunSummary> return)
+TestRunner
+	RunAsync does housekeeping and calls InvokeTestAsync 
+		InvokeTestAsync returns Task<Tuple<decimal, string>> representing execution time and some sort of message
+	BenchmarkTestRunner.InvokeTestAsync creates a new BenchmarkTestInvoker and calls RunAsync
+TestInvoker
+	RunAsync does housekeeping and calls InvokeTestMethodAsync
+	InvokeTestMethodAsync does error and timer housekeeping and calls Reflection.TestMethod.Invoke

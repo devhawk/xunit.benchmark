@@ -13,15 +13,14 @@ namespace DevHawk.Xunit
     [DebuggerDisplay(@"\{ class = {TestMethod.TestClass.Class.Name}, method = {TestMethod.Method.Name}, display = {DisplayName}, skip = {SkipReason} \}")]
     class BenchmarkTestCase : TestMethodTestCase
     {
-        public BenchmarkTestCase(ITestMethod testMethod)
+        int iterations;
+
+        public BenchmarkTestCase(ITestMethod testMethod, int iterations)
             : base(TestMethodDisplay.ClassAndMethod, testMethod)
         {
+            this.iterations = iterations;
         }
 
-        public Task<RunSummary> RunAsync(IMessageBus messageBus, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
-        {
-            throw new NotImplementedException();
-        }
-
+        public int Iterations { get { return iterations; } }
     }
 }
