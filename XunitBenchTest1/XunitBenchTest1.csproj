@@ -42,6 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\dev\Repos\xunit\src\xunit.execution.net45\bin\Debug\xunit.abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="xunit.assert">
+      <HintPath>E:\dev\Repos\xunit\src\xunit.assert\bin\Debug\xunit.assert.dll</HintPath>
+    </Reference>
     <Reference Include="xunit.core, Version=2.0.0.2785, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\dev\Repos\xunit\src\xunit.execution.net45\bin\Debug\xunit.core.dll</HintPath>

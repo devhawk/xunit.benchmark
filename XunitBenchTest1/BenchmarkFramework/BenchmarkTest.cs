@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xunit.Abstractions;
+using Xunit.Sdk;
 
 namespace DevHawk.Xunit
 {
-    class BenchmarkTest : ITest
+    class BenchmarkTest : LongLivedMarshalByRefObject, ITest
     {
         BenchmarkTestCase testCase;
 
