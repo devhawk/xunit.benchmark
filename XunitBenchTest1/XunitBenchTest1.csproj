@@ -53,8 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenchmarkFramework\BenchmarkAttribute.cs" />
-    <Compile Include="BenchmarkFramework\BenchmarkDiscoverer.cs" />
-    <Compile Include="BenchmarkFramework\BenchmarkExecutor.cs" />
+    <Compile Include="BenchmarkFramework\BenchmarkTestFrameworkDiscoverer.cs" />
+    <Compile Include="BenchmarkFramework\BenchmarkTestFrameworkExecutor.cs" />
     <Compile Include="BenchmarkFramework\BenchmarkTest.cs" />
     <Compile Include="BenchmarkFramework\BenchmarkTestAssemblyRunner.cs" />
     <Compile Include="BenchmarkFramework\BenchmarkTestCaseRunner.cs" />

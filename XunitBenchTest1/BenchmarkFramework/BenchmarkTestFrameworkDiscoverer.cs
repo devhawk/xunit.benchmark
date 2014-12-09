@@ -7,11 +7,11 @@ using Xunit.Sdk;
 
 namespace DevHawk.Xunit
 {
-    public class BenchmarkDiscoverer : TestFrameworkDiscoverer
+    public class BenchmarkTestFrameworkDiscoverer : TestFrameworkDiscoverer
     {
         readonly CollectionPerClassTestCollectionFactory testCollectionFactory;
 
-        public BenchmarkDiscoverer(IAssemblyInfo assemblyInfo, ISourceInformationProvider sourceInformationProvider)
+        public BenchmarkTestFrameworkDiscoverer(IAssemblyInfo assemblyInfo, ISourceInformationProvider sourceInformationProvider)
             : base(assemblyInfo, sourceInformationProvider, null)
         {
             var testAssembly = new TestAssembly(assemblyInfo, AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);

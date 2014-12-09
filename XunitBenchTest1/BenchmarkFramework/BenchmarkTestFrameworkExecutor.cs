@@ -8,16 +8,16 @@ using Xunit.Sdk;
 
 namespace DevHawk.Xunit
 {
-    class BenchmarkExecutor : TestFrameworkExecutor<BenchmarkTestCase>
+    class BenchmarkTestFrameworkExecutor : TestFrameworkExecutor<BenchmarkTestCase>
     {
-        public BenchmarkExecutor(AssemblyName assemblyName, ISourceInformationProvider sourceInformationProvider)
+        public BenchmarkTestFrameworkExecutor(AssemblyName assemblyName, ISourceInformationProvider sourceInformationProvider)
             : base(assemblyName, sourceInformationProvider)
         {
         }
 
         protected override ITestFrameworkDiscoverer CreateDiscoverer()
         {
-            return new BenchmarkDiscoverer(AssemblyInfo, SourceInformationProvider);
+            return new BenchmarkTestFrameworkDiscoverer(AssemblyInfo, SourceInformationProvider);
         }
 
         protected override async void RunTestCases(IEnumerable<BenchmarkTestCase> testCases, IMessageSink messageSink, ITestFrameworkOptions executionOptions)

@@ -14,12 +14,12 @@ namespace DevHawk.Xunit
     {
         protected override ITestFrameworkDiscoverer CreateDiscoverer(IAssemblyInfo assemblyInfo)
         {
-            return new BenchmarkDiscoverer(assemblyInfo, SourceInformationProvider);
+            return new BenchmarkTestFrameworkDiscoverer(assemblyInfo, SourceInformationProvider);
         }
 
         protected override ITestFrameworkExecutor CreateExecutor(System.Reflection.AssemblyName assemblyName)
         {
-            return new BenchmarkExecutor(assemblyName, SourceInformationProvider);
+            return new BenchmarkTestFrameworkExecutor(assemblyName, SourceInformationProvider);
         }
     }
 }
