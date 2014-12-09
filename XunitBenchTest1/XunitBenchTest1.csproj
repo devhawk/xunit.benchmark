@@ -56,8 +56,16 @@
     <Compile Include="BenchmarkFramework\BenchmarkAttribute.cs" />
     <Compile Include="BenchmarkFramework\BenchmarkDiscoverer.cs" />
     <Compile Include="BenchmarkFramework\BenchmarkExecutor.cs" />
+    <Compile Include="BenchmarkFramework\BenchmarkTest.cs" />
+    <Compile Include="BenchmarkFramework\BenchmarkTestAssemblyRunner.cs" />
+    <Compile Include="BenchmarkFramework\BenchmarkTestCaseRunner.cs" />
+    <Compile Include="BenchmarkFramework\BenchmarkTestClassRunner.cs" />
+    <Compile Include="BenchmarkFramework\BenchmarkTestCollectionRunner.cs" />
     <Compile Include="BenchmarkFramework\BenchmarkTestFramework.cs" />
     <Compile Include="BenchmarkFramework\BenchmarkTestCase.cs" />
+    <Compile Include="BenchmarkFramework\BenchmarkTestInvoker.cs" />
+    <Compile Include="BenchmarkFramework\BenchmarkTestMethodRunner.cs" />
+    <Compile Include="BenchmarkFramework\BenchmarkTestRunner.cs" />
     <Compile Include="ListInsertBenchmark.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

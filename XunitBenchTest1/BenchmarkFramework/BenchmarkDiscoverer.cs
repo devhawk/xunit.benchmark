@@ -31,8 +31,7 @@ namespace DevHawk.Xunit
                 if (benchmarkAttribute == null)
                     continue;
 
-                var testMethod = new TestMethod(testClass, method);
-                var testCase = new BenchmarkTestCase(testMethod);
+                var testCase = new BenchmarkTestCase(new TestMethod(testClass, method));
 
                 if (!ReportDiscoveredTestCase(testCase, includeSourceInformation, messageBus))
                     return false;

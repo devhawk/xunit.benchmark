@@ -17,12 +17,18 @@ namespace DevHawk.Xunit
 
         protected override ITestFrameworkDiscoverer CreateDiscoverer()
         {
-            throw new NotImplementedException();
+            return new BenchmarkDiscoverer(AssemblyInfo, SourceInformationProvider);
         }
 
-        protected override void RunTestCases(IEnumerable<BenchmarkTestCase> testCases, IMessageSink messageSink, ITestFrameworkOptions executionOptions)
+        protected override async void RunTestCases(IEnumerable<BenchmarkTestCase> testCases, IMessageSink messageSink, ITestFrameworkOptions executionOptions)
         {
-            //throw new NotImplementedException();
+            var testAssembly = new TestAssembly(AssemblyInfo, AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+
+            using (var assemblyRunner = new BenchmarkTestAssemblyRunner(testAssembly, testCases, messageSink, executionOptions))
+            {
+                await assemblyRunner.RunAsync();
+            }
         }
+
     }
 }
