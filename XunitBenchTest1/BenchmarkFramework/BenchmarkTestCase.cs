@@ -11,7 +11,8 @@ namespace DevHawk.Xunit
 {
     class BenchmarkTestCase : TestMethodTestCase
     {
-        public BenchmarkTestCase(ITestMethod testMethod) : base(testMethod)
+        public BenchmarkTestCase(ITestMethod testMethod)
+            : base(TestMethodDisplay.ClassAndMethod, testMethod)
         {
         }
 
