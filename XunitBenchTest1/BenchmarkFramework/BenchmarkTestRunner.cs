@@ -18,7 +18,7 @@ namespace DevHawk.Xunit
 
         protected override async Task<Tuple<decimal, string>> InvokeTestAsync(ExceptionAggregator aggregator)
         {
-            var executionTime = await new BenchmarkTestInvoker(Test, MessageBus, TestClass, ConstructorArguments, TestMethod, TestMethodArguments, new ExceptionAggregator(Aggregator), CancellationTokenSource).RunAsync();
+            var executionTime = await new BenchmarkTestInvoker(Test, MessageBus, TestClass, ConstructorArguments, TestMethod, TestMethodArguments, aggregator, CancellationTokenSource).RunAsync();
             return Tuple.Create(executionTime, string.Empty);
         }
     }
