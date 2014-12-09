@@ -19,7 +19,6 @@ namespace DevHawk.Xunit
         protected override Task<RunSummary> RunTestCaseAsync(BenchmarkTestCase testCase)
         {
             return new BenchmarkTestCaseRunner(testCase, MessageBus, new ExceptionAggregator(Aggregator), CancellationTokenSource).RunAsync();
-            //return testCase.RunAsync(MessageBus, new ExceptionAggregator(Aggregator), CancellationTokenSource);
         }
     }
 }
