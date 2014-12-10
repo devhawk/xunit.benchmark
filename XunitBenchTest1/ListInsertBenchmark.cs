@@ -14,7 +14,7 @@ namespace XunitBenchTest1
     {
         const int Size = 64 * 1024;
 
-        [Benchmark(Iterations=50)]
+        [Benchmark(Iterations = 50)]
         public void ListIndexer()
         {
             // start iteration setup
@@ -28,18 +28,17 @@ namespace XunitBenchTest1
             // start iteration
             for (int i = 0; i < l1.Count; i++)
             {
-                l1[i] = l2[l2.Count - i - i];
+                l1[i] = l2[l2.Count - i - 1];
             }
             // end iteration
-            
-
         }
 
     }
+
     public class ListInsertBenchmark
     {
         //eventually something like this:
-        //  [BenchmarkTheory(Iterations = 1000)]
+        //  [BenchmarkTheory(Iterations = 100)]
         //  [InlineData(1)]            
         //  [InlineData(50)]
         //  [InlineData(500)]
@@ -75,42 +74,40 @@ namespace XunitBenchTest1
             // no iteration cleanup in this example
         }
 
-        [Benchmark(Iterations=1000)]
+        [Benchmark(Iterations = 100)]
         public void NoCapacityInsertOne()
         {
             NoCapacityInsert(1);
         }
 
-        [Benchmark(Iterations = 1000)]
+        [Benchmark(Iterations = 100)]
         public void NoCapacityInsertFifty()
         {
             NoCapacityInsert(50);
         }
 
-        [Benchmark(Iterations=1000)]
+        [Benchmark(Iterations = 100)]
         public void NoCapacityInsertFiveHundred()
         {
             NoCapacityInsert(500);
         }
 
-        [Benchmark(Iterations=1000)]
+        [Benchmark(Iterations = 100)]
         public void CapacityInsertOne()
         {
             CapacityInsert(1);
         }
 
-        [Benchmark(Iterations=1000)]
+        [Benchmark(Iterations = 100)]
         public void CapacityInsertFifty()
         {
             CapacityInsert(50);
         }
 
-        [Benchmark(Iterations=1000)]
+        [Benchmark(Iterations = 100)]
         public void CapacityInsertFiveHundred()
         {
             CapacityInsert(500);
         }
-
-
     }
 }
