@@ -27,17 +27,11 @@ namespace DevHawk.Xunit
         {
             foreach (var method in testClass.Class.GetMethods(false))
             {
-                var benchmarkAttribute = method.GetCustomAttributes(typeof(BenchmarkAttribute)).FirstOrDefault();
+                var benchmarkAttribute = method.GetCustomAttributes(typeof(BenchmarkAttribute)).SingleOrDefault();
                 if (benchmarkAttribute == null)
                     continue;
 
-                var iterations = benchmarkAttribute.GetNamedArgument<int>("Iterations");
-                if (iterations <= 0)
-                {
-                    iterations = 50;
-                }
-
-                var testCase = new BenchmarkTestCase(new TestMethod(testClass, method), iterations);
+                var testCase = new BenchmarkTestCase(new TestMethod(testClass, method));
 
                 if (!ReportDiscoveredTestCase(testCase, includeSourceInformation, messageBus))
                     return false;

@@ -15,10 +15,17 @@ namespace DevHawk.Xunit
     {
         int iterations;
 
-        public BenchmarkTestCase(ITestMethod testMethod, int iterations)
+        public BenchmarkTestCase(ITestMethod testMethod)
             : base(TestMethodDisplay.ClassAndMethod, testMethod)
         {
-            this.iterations = iterations;
+            //retrieve additional info from benchmark attribute. 
+            var benchmarkAttribute = testMethod.Method.GetCustomAttributes(typeof(BenchmarkAttribute)).Single();
+
+            iterations = benchmarkAttribute.GetNamedArgument<int>("Iterations");
+            if (iterations <= 0)
+            {
+                iterations = 50;
+            }
         }
 
         public int Iterations { get { return iterations; } }
