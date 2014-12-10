@@ -18,9 +18,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xunit", "Xunit", "{EBCF376A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.core", "xunit\src\xunit.core\xunit.core.csproj", "{1B843C0F-8E08-4BA9-8C85-EEAF779A0774}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.abstractions.net35", "xunit\src\xunit.abstractions.net35\xunit.abstractions.net35.csproj", "{53012549-D81B-4E40-B626-67C19265AA6F}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.execution.net45", "xunit\src\xunit.execution.net45\xunit.execution.net45.csproj", "{09EF9917-4B00-4646-8C3F-96EFACC8BF51}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.console", "xunit\src\xunit.console\xunit.console.csproj", "{19C75545-5E0E-4E38-9995-511ED2DF6D30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.runner.utility.net35", "xunit\src\xunit.runner.utility.net35\xunit.runner.utility.net35.csproj", "{EFC3F529-3686-416B-9C67-36EC914C776A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +48,10 @@ Global
 		{1B843C0F-8E08-4BA9-8C85-EEAF779A0774}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B843C0F-8E08-4BA9-8C85-EEAF779A0774}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B843C0F-8E08-4BA9-8C85-EEAF779A0774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53012549-D81B-4E40-B626-67C19265AA6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53012549-D81B-4E40-B626-67C19265AA6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53012549-D81B-4E40-B626-67C19265AA6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53012549-D81B-4E40-B626-67C19265AA6F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09EF9917-4B00-4646-8C3F-96EFACC8BF51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09EF9917-4B00-4646-8C3F-96EFACC8BF51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09EF9917-4B00-4646-8C3F-96EFACC8BF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -52,6 +60,10 @@ Global
 		{19C75545-5E0E-4E38-9995-511ED2DF6D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19C75545-5E0E-4E38-9995-511ED2DF6D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19C75545-5E0E-4E38-9995-511ED2DF6D30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFC3F529-3686-416B-9C67-36EC914C776A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFC3F529-3686-416B-9C67-36EC914C776A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFC3F529-3686-416B-9C67-36EC914C776A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFC3F529-3686-416B-9C67-36EC914C776A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,7 +71,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{77743589-F177-4007-97B8-50B82A1C7044} = {EBCF376A-525A-4616-BBBA-BC58C36D5FD3}
 		{1B843C0F-8E08-4BA9-8C85-EEAF779A0774} = {EBCF376A-525A-4616-BBBA-BC58C36D5FD3}
+		{53012549-D81B-4E40-B626-67C19265AA6F} = {EBCF376A-525A-4616-BBBA-BC58C36D5FD3}
 		{09EF9917-4B00-4646-8C3F-96EFACC8BF51} = {EBCF376A-525A-4616-BBBA-BC58C36D5FD3}
 		{19C75545-5E0E-4E38-9995-511ED2DF6D30} = {EBCF376A-525A-4616-BBBA-BC58C36D5FD3}
+		{EFC3F529-3686-416B-9C67-36EC914C776A} = {EBCF376A-525A-4616-BBBA-BC58C36D5FD3}
 	EndGlobalSection
 EndGlobal
