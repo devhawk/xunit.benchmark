@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Microsoft.Xunit;
 
-[assembly: TestFramework("Microsoft.Xunit.BenchmarkTestFramework", "XunitBenchTest1")]
+[assembly: TestFramework("Microsoft.Xunit.BenchmarkTestFramework", "Microsoft.Xunit.Benchmark")]
 
 namespace XunitBenchTest1
 {

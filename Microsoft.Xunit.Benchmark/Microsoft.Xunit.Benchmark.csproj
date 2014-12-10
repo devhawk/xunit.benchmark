@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}</ProjectGuid>
+    <ProjectGuid>{DF967787-FE96-4B48-A364-D23ECC7E8E49}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XunitBenchTest1</RootNamespace>
-    <AssemblyName>XunitBenchTest1</AssemblyName>
+    <RootNamespace>Microsoft.Xunit.Benchmark</RootNamespace>
+    <AssemblyName>Microsoft.Xunit.Benchmark</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>31bfccc0</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,14 +39,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ListInsertBenchmark.cs" />
+    <Compile Include="BenchmarkAttribute.cs" />
+    <Compile Include="BenchmarkTest.cs" />
+    <Compile Include="BenchmarkTestAssemblyRunner.cs" />
+    <Compile Include="BenchmarkTestCase.cs" />
+    <Compile Include="BenchmarkTestCaseRunner.cs" />
+    <Compile Include="BenchmarkTestClassRunner.cs" />
+    <Compile Include="BenchmarkTestCollectionRunner.cs" />
+    <Compile Include="BenchmarkTestFramework.cs" />
+    <Compile Include="BenchmarkTestFrameworkDiscoverer.cs" />
+    <Compile Include="BenchmarkTestFrameworkExecutor.cs" />
+    <Compile Include="BenchmarkTestInvoker.cs" />
+    <Compile Include="BenchmarkTestMethodRunner.cs" />
+    <Compile Include="BenchmarkTestRunner.cs" />
+    <Compile Include="ITracer.cs" />
+    <Compile Include="NullTracer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StopwatchTracer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Xunit.Benchmark\Microsoft.Xunit.Benchmark.csproj">
-      <Project>{df967787-fe96-4b48-a364-d23ecc7e8e49}</Project>
-      <Name>Microsoft.Xunit.Benchmark</Name>
-    </ProjectReference>
+    <None Include="LICENSE" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\xunit\src\xunit.abstractions.pcl\xunit.abstractions.pcl.csproj">
       <Project>{77743589-f177-4007-97b8-50b82a1c7044}</Project>
       <Name>xunit.abstractions.pcl</Name>

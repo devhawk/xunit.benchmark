@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.console", "xunit\src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.runner.utility.net35", "xunit\src\xunit.runner.utility.net35\xunit.runner.utility.net35.csproj", "{EFC3F529-3686-416B-9C67-36EC914C776A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Xunit.Benchmark", "Microsoft.Xunit.Benchmark\Microsoft.Xunit.Benchmark.csproj", "{DF967787-FE96-4B48-A364-D23ECC7E8E49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{EFC3F529-3686-416B-9C67-36EC914C776A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFC3F529-3686-416B-9C67-36EC914C776A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFC3F529-3686-416B-9C67-36EC914C776A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF967787-FE96-4B48-A364-D23ECC7E8E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF967787-FE96-4B48-A364-D23ECC7E8E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF967787-FE96-4B48-A364-D23ECC7E8E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF967787-FE96-4B48-A364-D23ECC7E8E49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
