@@ -11,9 +11,12 @@ namespace DevHawk.Xunit
 {
     class BenchmarkTestCaseRunner : TestCaseRunner<BenchmarkTestCase>
     {
-        public BenchmarkTestCaseRunner(BenchmarkTestCase testCase, IMessageBus messageBus, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
+        ITracer tracer;
+
+        public BenchmarkTestCaseRunner(BenchmarkTestCase testCase, ITracer tracer, IMessageBus messageBus, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
             : base(testCase, messageBus, aggregator, cancellationTokenSource)
         {
+            this.tracer = tracer;
         }
 
         protected override Task<RunSummary> RunTestAsync()
@@ -21,8 +24,11 @@ namespace DevHawk.Xunit
             var test = new BenchmarkTest(TestCase);
             var testClass = TestCase.TestMethod.TestClass.Class.ToRuntimeType();
             var testMethod = TestCase.TestMethod.Method.ToRuntimeMethod();
+            var testMethodParams = testMethod.GetParameters();
+            object[] testMethodArgs = (testMethodParams.Length == 1 && testMethodParams[0].ParameterType == typeof(ITracer)) 
+                ? new object[] { tracer } : null;
 
-            return new BenchmarkTestRunner(test, MessageBus, testClass, null, testMethod, null, null, Aggregator, CancellationTokenSource).RunAsync();
+            return new BenchmarkTestRunner(test, MessageBus, testClass, null, testMethod, testMethodArgs, null, Aggregator, CancellationTokenSource).RunAsync();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace XunitBenchTest1
         const int Size = 64 * 1024;
 
         [Benchmark(Iterations = 50)]
-        public void ListIndexer()
+        public void ListIndexer(DevHawk.Xunit.ITracer tracer)
         {
             // start iteration setup
             var a1 = new int[Size];
@@ -25,10 +25,13 @@ namespace XunitBenchTest1
             var l2 = new List<int>(a2);
             // end iteration setup
 
-            // start iteration
-            for (int i = 0; i < l1.Count; i++)
+            using (tracer.Trace())
             {
-                l1[i] = l2[l2.Count - i - 1];
+                // start iteration
+                for (int i = 0; i < l1.Count; i++)
+                {
+                    l1[i] = l2[l2.Count - i - 1];
+                }
             }
             // end iteration
         }
@@ -80,31 +83,31 @@ namespace XunitBenchTest1
             NoCapacityInsert(1);
         }
 
-        [Benchmark(Iterations = 100)]
+        //[Benchmark(Iterations = 100)]
         public void NoCapacityInsertFifty()
         {
             NoCapacityInsert(50);
         }
 
-        [Benchmark(Iterations = 100)]
+        //[Benchmark(Iterations = 100)]
         public void NoCapacityInsertFiveHundred()
         {
             NoCapacityInsert(500);
         }
 
-        [Benchmark(Iterations = 100)]
+        //[Benchmark(Iterations = 100)]
         public void CapacityInsertOne()
         {
             CapacityInsert(1);
         }
 
-        [Benchmark(Iterations = 100)]
+        //[Benchmark(Iterations = 100)]
         public void CapacityInsertFifty()
         {
             CapacityInsert(50);
         }
 
-        [Benchmark(Iterations = 100)]
+        //[Benchmark(Iterations = 100)]
         public void CapacityInsertFiveHundred()
         {
             CapacityInsert(500);
