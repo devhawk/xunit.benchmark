@@ -26,8 +26,13 @@ Base TestInvoker.RunAsync creates a test class instance and calls InvokeTestMeth
 	XunitTestInvoker overrides Before/AfterTestMethodInvokedAsync methods
 
 TestFramework
+	ITestFramework.GetDiscoverer returns a new ITestFrameworkDiscoverer
+		BenchmarkTestFramework returns a new BenchmarkTestFrameworkDiscoverer
 	ITestFramework.GetExecutor returns a new ITestFrameworkExecutor
 		BenchmarkTestFramework returns a new BenchmarkTestFrameworkExecutor
+TestFrameworkDiscoverer
+	Xunit calls ITestFrameworkDiscoverer.Find to locate all test cases
+	TestFrameworkDiscoverer.Find calls CreateTestClass and FindTestsForType to locate all the test cases in an assembly
 TestFrameworkExecutor
 	Xunit calls ITestFrameworkExecutor.RunTests (void return)
 	TestFrameworkExecutor.RunTests does housekeeping and calls abstract RunTestCases method
