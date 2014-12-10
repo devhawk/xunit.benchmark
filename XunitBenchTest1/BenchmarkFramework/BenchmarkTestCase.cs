@@ -16,7 +16,7 @@ namespace DevHawk.Xunit
         int iterations;
 
         public BenchmarkTestCase(ITestMethod testMethod, int iterations)
-            : base(TestMethodDisplay.ClassAndMethod, testMethod)
+            : base(testMethod)
         {
             this.iterations = iterations;
         }
