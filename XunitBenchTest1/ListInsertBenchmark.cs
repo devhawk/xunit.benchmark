@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using DevHawk.Xunit;
+using Microsoft.Xunit;
 
-[assembly: TestFramework("DevHawk.Xunit.BenchmarkTestFramework", "XunitBenchTest1")]
+[assembly: TestFramework("Microsoft.Xunit.BenchmarkTestFramework", "XunitBenchTest1")]
 
 namespace XunitBenchTest1
 {
@@ -15,7 +15,7 @@ namespace XunitBenchTest1
         const int Size = 64 * 1024;
 
         [Benchmark(Iterations = 50, CollectGarbage = true)]
-        public void ListIndexer(DevHawk.Xunit.ITracer tracer)
+        public void ListIndexer(ITracer tracer)
         {
             // start iteration setup
             var a1 = new int[Size];

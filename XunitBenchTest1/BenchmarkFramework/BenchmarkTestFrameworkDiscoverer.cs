@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using System;
 using System.Linq;
-using System.Text;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace DevHawk.Xunit
+namespace Microsoft.Xunit
 {
-    public class BenchmarkTestFrameworkDiscoverer : TestFrameworkDiscoverer
+    class BenchmarkTestFrameworkDiscoverer : TestFrameworkDiscoverer
     {
         readonly CollectionPerClassTestCollectionFactory testCollectionFactory;
 

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xunit.Sdk;
-using Xunit.Abstractions;
-using System.Threading.Tasks;
-using System.Threading;
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-namespace DevHawk.Xunit
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Xunit.Sdk;
+
+namespace Microsoft.Xunit
 {
     class BenchmarkTestCaseRunner : TestCaseRunner<BenchmarkTestCase>
     {

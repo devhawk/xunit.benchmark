@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using System;
 using Xunit.Abstractions;
 using Xunit.Sdk;
-using XunitBenchTest1;
 
-namespace DevHawk.Xunit
+namespace Microsoft.Xunit
 {
-    class BenchmarkTestFramework : TestFramework
+    public class BenchmarkTestFramework : TestFramework
     {
         protected override ITestFrameworkDiscoverer CreateDiscoverer(IAssemblyInfo assemblyInfo)
         {
