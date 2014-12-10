@@ -10,14 +10,14 @@ namespace DevHawk.Xunit
     {
         private NullTracer() { }
 
-        class NullDisposable : IDisposable
+        class Disposer : IDisposable
         {
             public void Dispose()
             {
             }
         }
 
-        static readonly NullDisposable nullDisposable = new NullDisposable();
+        static readonly Disposer nullDisposable = new Disposer();
 
         public IDisposable Trace()
         {

@@ -77,7 +77,7 @@ namespace XunitBenchTest1
             // no iteration cleanup in this example
         }
 
-        [Benchmark(Iterations = 100)]
+        //[Benchmark(Iterations = 100)]
         public void NoCapacityInsertOne()
         {
             NoCapacityInsert(1);

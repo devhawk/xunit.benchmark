@@ -25,11 +25,19 @@ namespace DevHawk.Xunit
 
         public async Task<RunSummary> RunAsync(IMessageBus messageBus, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
         {
-            await new BenchmarkTestCaseRunner(this, NullTracer.Instance, messageBus, new ExceptionAggregator(aggregator), cancellationTokenSource).RunAsync();
+            //run the test once to make sure it's been jitted
+            RunSummary summary = await new BenchmarkTestCaseRunner(this, NullTracer.Instance, messageBus, new ExceptionAggregator(aggregator), cancellationTokenSource).RunAsync();
 
-            RunSummary summary = new RunSummary();
+            TimeSpan totalTime = TimeSpan.Zero;
+
             for (int i = 0; i < Iterations; i++)
-                summary.Aggregate(await new BenchmarkTestCaseRunner(this, NullTracer.Instance, messageBus, new ExceptionAggregator(aggregator), cancellationTokenSource).RunAsync());
+            {
+                var tracer = new StopwatchTracer();
+                summary.Aggregate(await new BenchmarkTestCaseRunner(this, tracer, messageBus, new ExceptionAggregator(aggregator), cancellationTokenSource).RunAsync());
+                totalTime += tracer.GetElapsed();
+            }
+
+            //Console.WriteLine("{0} {1} {2}", this.DisplayName, this.iterations, totalTime);
 
             return new RunSummary()
             {
