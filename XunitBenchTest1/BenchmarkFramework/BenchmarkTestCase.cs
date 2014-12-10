@@ -10,32 +10,6 @@ using Xunit.Sdk;
 
 namespace DevHawk.Xunit
 {
-    public interface ITracer
-    {
-        IDisposable Trace();
-    }
-
-    public class NullTracer : ITracer
-    {
-        private NullTracer() { }
-
-        class NullDisposable : IDisposable
-        {
-            public void Dispose()
-            {
-            }
-        }
-
-        static readonly NullDisposable nullDisposable = new NullDisposable();
-
-        public IDisposable Trace()
-        {
-            return nullDisposable;
-        }
-
-        public static readonly NullTracer Instance = new NullTracer();
-    }
-
     [DebuggerDisplay(@"\{ class = {TestMethod.TestClass.Class.Name}, method = {TestMethod.Method.Name}, display = {DisplayName}, skip = {SkipReason} \}")]
     class BenchmarkTestCase : TestMethodTestCase
     {

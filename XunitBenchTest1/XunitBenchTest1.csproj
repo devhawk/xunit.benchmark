@@ -53,6 +53,8 @@
     <Compile Include="BenchmarkFramework\BenchmarkTestInvoker.cs" />
     <Compile Include="BenchmarkFramework\BenchmarkTestMethodRunner.cs" />
     <Compile Include="BenchmarkFramework\BenchmarkTestRunner.cs" />
+    <Compile Include="BenchmarkFramework\ITracer.cs" />
+    <Compile Include="BenchmarkFramework\NullTracer.cs" />
     <Compile Include="ListInsertBenchmark.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
