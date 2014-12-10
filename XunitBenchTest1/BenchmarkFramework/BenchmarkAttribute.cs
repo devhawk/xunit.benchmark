@@ -9,5 +9,6 @@ namespace DevHawk.Xunit
     class BenchmarkAttribute : Attribute
     {
         public int Iterations { get; set; }
+        public bool CollectGarbage { get; set; }
     }
 }

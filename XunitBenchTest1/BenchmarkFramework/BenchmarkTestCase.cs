@@ -14,6 +14,7 @@ namespace DevHawk.Xunit
     class BenchmarkTestCase : TestMethodTestCase
     {
         int iterations;
+        bool collectGarbage;
 
         public BenchmarkTestCase(ITestMethod testMethod)
             : base(TestMethodDisplay.ClassAndMethod, testMethod)
@@ -26,9 +27,12 @@ namespace DevHawk.Xunit
             {
                 iterations = 50;
             }
+
+            collectGarbage = benchmarkAttribute.GetNamedArgument<bool>("CollectGarbage");
         }
 
         public int Iterations { get { return iterations; } }
+        public bool CollectGargage { get { return collectGarbage; } }
 
         public async Task<RunSummary> RunAsync(IMessageBus messageBus, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
         {
@@ -39,6 +43,13 @@ namespace DevHawk.Xunit
 
             for (int i = 0; i < Iterations; i++)
             {
+                if (CollectGargage)
+                {
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    GC.Collect();
+                }
+
                 var tracer = new StopwatchTracer();
                 summary.Aggregate(await new BenchmarkTestCaseRunner(this, tracer, messageBus, new ExceptionAggregator(aggregator), cancellationTokenSource).RunAsync());
                 totalTime += tracer.GetElapsed();

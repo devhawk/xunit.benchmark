@@ -14,7 +14,7 @@ namespace XunitBenchTest1
     {
         const int Size = 64 * 1024;
 
-        [Benchmark(Iterations = 50)]
+        [Benchmark(Iterations = 50, CollectGarbage = true)]
         public void ListIndexer(DevHawk.Xunit.ITracer tracer)
         {
             // start iteration setup
