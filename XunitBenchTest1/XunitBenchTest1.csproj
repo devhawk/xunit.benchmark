@@ -38,18 +38,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\xunit\src\xunit.execution.net45\bin\Debug\xunit.abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.core, Version=2.0.0.2785, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\xunit\src\xunit.execution.net45\bin\Debug\xunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.execution, Version=2.0.0.2785, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\xunit\src\xunit.execution.net45\bin\Debug\xunit.execution.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenchmarkFramework\BenchmarkAttribute.cs" />
@@ -67,6 +55,20 @@
     <Compile Include="BenchmarkFramework\BenchmarkTestRunner.cs" />
     <Compile Include="ListInsertBenchmark.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\xunit\src\xunit.abstractions.pcl\xunit.abstractions.pcl.csproj">
+      <Project>{77743589-f177-4007-97b8-50b82a1c7044}</Project>
+      <Name>xunit.abstractions.pcl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xunit\src\xunit.core\xunit.core.csproj">
+      <Project>{1b843c0f-8e08-4ba9-8c85-eeaf779a0774}</Project>
+      <Name>xunit.core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\xunit\src\xunit.execution.net45\xunit.execution.net45.csproj">
+      <Project>{09ef9917-4b00-4646-8c3f-96efacc8bf51}</Project>
+      <Name>xunit.execution.net45</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

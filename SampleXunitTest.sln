@@ -12,6 +12,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1A3ADB
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.abstractions.pcl", "xunit\src\xunit.abstractions.pcl\xunit.abstractions.pcl.csproj", "{77743589-F177-4007-97B8-50B82A1C7044}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xunit", "Xunit", "{EBCF376A-525A-4616-BBBA-BC58C36D5FD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.core", "xunit\src\xunit.core\xunit.core.csproj", "{1B843C0F-8E08-4BA9-8C85-EEAF779A0774}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.execution.net45", "xunit\src\xunit.execution.net45\xunit.execution.net45.csproj", "{09EF9917-4B00-4646-8C3F-96EFACC8BF51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.console", "xunit\src\xunit.console\xunit.console.csproj", "{19C75545-5E0E-4E38-9995-511ED2DF6D30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,8 +36,30 @@ Global
 		{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77743589-F177-4007-97B8-50B82A1C7044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77743589-F177-4007-97B8-50B82A1C7044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77743589-F177-4007-97B8-50B82A1C7044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77743589-F177-4007-97B8-50B82A1C7044}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B843C0F-8E08-4BA9-8C85-EEAF779A0774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B843C0F-8E08-4BA9-8C85-EEAF779A0774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B843C0F-8E08-4BA9-8C85-EEAF779A0774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B843C0F-8E08-4BA9-8C85-EEAF779A0774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09EF9917-4B00-4646-8C3F-96EFACC8BF51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09EF9917-4B00-4646-8C3F-96EFACC8BF51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09EF9917-4B00-4646-8C3F-96EFACC8BF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09EF9917-4B00-4646-8C3F-96EFACC8BF51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19C75545-5E0E-4E38-9995-511ED2DF6D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19C75545-5E0E-4E38-9995-511ED2DF6D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19C75545-5E0E-4E38-9995-511ED2DF6D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19C75545-5E0E-4E38-9995-511ED2DF6D30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{77743589-F177-4007-97B8-50B82A1C7044} = {EBCF376A-525A-4616-BBBA-BC58C36D5FD3}
+		{1B843C0F-8E08-4BA9-8C85-EEAF779A0774} = {EBCF376A-525A-4616-BBBA-BC58C36D5FD3}
+		{09EF9917-4B00-4646-8C3F-96EFACC8BF51} = {EBCF376A-525A-4616-BBBA-BC58C36D5FD3}
+		{19C75545-5E0E-4E38-9995-511ED2DF6D30} = {EBCF376A-525A-4616-BBBA-BC58C36D5FD3}
 	EndGlobalSection
 EndGlobal
