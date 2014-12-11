@@ -7,8 +7,8 @@
     <ProjectGuid>{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XunitBenchTest1</RootNamespace>
-    <AssemblyName>XunitBenchTest1</AssemblyName>
+    <RootNamespace>sample.xunit.benchmark</RootNamespace>
+    <AssemblyName>sample.xunit.benchmark</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>31bfccc0</NuGetPackageImportStamp>
@@ -44,9 +44,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Xunit.Benchmark\Microsoft.Xunit.Benchmark.csproj">
+    <ProjectReference Include="..\xunit.benchmark\xunit.benchmark.csproj">
       <Project>{df967787-fe96-4b48-a364-d23ecc7e8e49}</Project>
-      <Name>Microsoft.Xunit.Benchmark</Name>
+      <Name>xunit.benchmark</Name>
     </ProjectReference>
     <ProjectReference Include="..\xunit\src\xunit.abstractions.pcl\xunit.abstractions.pcl.csproj">
       <Project>{77743589-f177-4007-97b8-50b82a1c7044}</Project>

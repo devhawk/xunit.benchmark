@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SampleXunitTest")]
+[assembly: AssemblyTitle("XunitBenchTest1")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SampleXunitTest")]
+[assembly: AssemblyProduct("XunitBenchTest1")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("47180c7b-5606-42d7-a3f5-a336d7cf63c2")]
+[assembly: Guid("91fb0f02-a621-4ba1-b177-2239584b5870")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,3 +34,8 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+// xunit.benchmark is implemented as an xunit.net 2.0 custom test frameworks. 
+// This assembly attribute enables xunit.benchmark for this assembly
+[assembly: Xunit.TestFramework("Microsoft.Xunit.BenchmarkTestFramework", "Xunit.Benchmark")]
+

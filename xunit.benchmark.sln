@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleXunitTest", "SampleXunitTest\SampleXunitTest.csproj", "{479A9568-74D6-478A-8F70-1EC5461AFB7A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XunitBenchTest1", "XunitBenchTest1\XunitBenchTest1.csproj", "{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1A3ADB18-A8F9-447C-BF4E-A50046243D9D}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
@@ -26,7 +22,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.console", "xunit\src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.runner.utility.net35", "xunit\src\xunit.runner.utility.net35\xunit.runner.utility.net35.csproj", "{EFC3F529-3686-416B-9C67-36EC914C776A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Xunit.Benchmark", "Microsoft.Xunit.Benchmark\Microsoft.Xunit.Benchmark.csproj", "{DF967787-FE96-4B48-A364-D23ECC7E8E49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xunit.benchmark", "xunit.benchmark\xunit.benchmark.csproj", "{DF967787-FE96-4B48-A364-D23ECC7E8E49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sample.xunit.benchmark", "sample.xunit.benchmark\sample.xunit.benchmark.csproj", "{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,14 +32,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{479A9568-74D6-478A-8F70-1EC5461AFB7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{479A9568-74D6-478A-8F70-1EC5461AFB7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{479A9568-74D6-478A-8F70-1EC5461AFB7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{479A9568-74D6-478A-8F70-1EC5461AFB7A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77743589-F177-4007-97B8-50B82A1C7044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{77743589-F177-4007-97B8-50B82A1C7044}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77743589-F177-4007-97B8-50B82A1C7044}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,6 +60,10 @@ Global
 		{DF967787-FE96-4B48-A364-D23ECC7E8E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF967787-FE96-4B48-A364-D23ECC7E8E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF967787-FE96-4B48-A364-D23ECC7E8E49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BD32E0B-5EFC-4599-BEDC-CB819F9A997E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
