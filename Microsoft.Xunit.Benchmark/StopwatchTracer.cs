@@ -21,6 +21,7 @@ namespace Microsoft.Xunit
 
             public void Dispose()
             {
+                BenchmarkEventSource.Log.EndBenchmarkTracer();
                 this.tracer.stopwatch.Stop();
             }
         }
@@ -29,6 +30,7 @@ namespace Microsoft.Xunit
         {
             var disposer = new Disposer(this);
             stopwatch = Stopwatch.StartNew();
+            BenchmarkEventSource.Log.StartBenchmarkTracer();
             return disposer;
         }
 

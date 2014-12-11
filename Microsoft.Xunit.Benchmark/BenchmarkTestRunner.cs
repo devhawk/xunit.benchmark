@@ -37,6 +37,8 @@ namespace Microsoft.Xunit
 
         protected override async Task<Tuple<decimal, string>> InvokeTestAsync(ExceptionAggregator aggregator)
         {
+            BenchmarkEventSource.Log.StartBenchmark(this.DisplayName, Iterations);
+
             //inject ITracer instance if test method defines single parameter of type ITracer
             var testMethodParams = TestMethod.GetParameters();
             var hasTracerParam = (testMethodParams.Length == 1 && testMethodParams[0].ParameterType == typeof(ITracer));
@@ -57,7 +59,9 @@ namespace Microsoft.Xunit
 
                 var stopwatchTracer = new StopwatchTracer();
 
+                BenchmarkEventSource.Log.StartBenchmarkIteration(i);
                 var invokerTime = await new BenchmarkTestInvoker(Test, MessageBus, TestClass, ConstructorArguments, TestMethod, hasTracerParam ? new object[] { stopwatchTracer } : null, aggregator, CancellationTokenSource).RunAsync();
+                BenchmarkEventSource.Log.EndBenchmarkIteration(i);
 
                 var stopwatchTime = stopwatchTracer.GetElapsed();
 
@@ -73,6 +77,7 @@ namespace Microsoft.Xunit
 
             //Console.WriteLine("{0} {1} {2}", this.DisplayName, this.iterations, executionTime);
 
+            BenchmarkEventSource.Log.EndBenchmark(this.DisplayName, iterations);
             return Tuple.Create(executionTime, string.Format("Iterations = {0}, CollectGarbage = {1}", iterations, collectGarbage));
         }
     }
