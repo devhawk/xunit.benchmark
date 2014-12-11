@@ -32,13 +32,13 @@ namespace Microsoft.Xunit
             return disposer;
         }
 
-        public TimeSpan GetElapsed()
+        public decimal? GetElapsed()
         {
             if (stopwatch == null)
-                return TimeSpan.Zero;
+                return null;
 
             Debug.Assert(!stopwatch.IsRunning);
-            return stopwatch.Elapsed;
+            return (decimal)stopwatch.Elapsed.TotalSeconds;
         }
     }
 }

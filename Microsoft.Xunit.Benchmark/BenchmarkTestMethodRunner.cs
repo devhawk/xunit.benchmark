@@ -19,7 +19,7 @@ namespace Microsoft.Xunit
 
         protected override Task<RunSummary> RunTestCaseAsync(BenchmarkTestCase testCase)
         {
-            return testCase.RunAsync(MessageBus, new ExceptionAggregator(Aggregator), CancellationTokenSource);
+            return new BenchmarkTestCaseRunner(testCase, MessageBus, new ExceptionAggregator(Aggregator), CancellationTokenSource).RunAsync();
         }
     }
 }
