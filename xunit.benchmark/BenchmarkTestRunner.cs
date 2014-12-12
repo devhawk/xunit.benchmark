@@ -37,7 +37,7 @@ namespace Microsoft.Xunit
 
         protected override async Task<Tuple<decimal, string>> InvokeTestAsync(ExceptionAggregator aggregator)
         {
-            BenchmarkEventSource.Log.StartBenchmark(this.DisplayName, Iterations);
+            BenchmarkEventSource.Log.BenchmarkStart(this.DisplayName, Iterations);
 
             //inject ITracer instance if test method defines single parameter of type ITracer
             var testMethodParams = TestMethod.GetParameters();
@@ -48,7 +48,9 @@ namespace Microsoft.Xunit
             await new BenchmarkTestInvoker(Test, MessageBus, TestClass, ConstructorArguments, TestMethod, args, aggregator, CancellationTokenSource).RunAsync();
 
             decimal executionTime = 0;
-            for (int i = 0; i < Iterations; i++)
+
+            //starting from 1 so that iteration number appears correctly in ETW log
+            for (int i = 1; i <= Iterations; i++)
             {
                 if (CollectGargage)
                 {
@@ -59,9 +61,9 @@ namespace Microsoft.Xunit
 
                 var stopwatchTracer = new StopwatchTracer();
 
-                BenchmarkEventSource.Log.StartBenchmarkIteration(i);
+                BenchmarkEventSource.Log.BenchmarkIterationStart(i);
                 var invokerTime = await new BenchmarkTestInvoker(Test, MessageBus, TestClass, ConstructorArguments, TestMethod, hasTracerParam ? new object[] { stopwatchTracer } : null, aggregator, CancellationTokenSource).RunAsync();
-                BenchmarkEventSource.Log.EndBenchmarkIteration(i);
+                BenchmarkEventSource.Log.BenchmarkIterationStop(i);
 
                 var stopwatchTime = stopwatchTracer.GetElapsed();
 
@@ -77,7 +79,7 @@ namespace Microsoft.Xunit
 
             //Console.WriteLine("{0} {1} {2}", this.DisplayName, this.iterations, executionTime);
 
-            BenchmarkEventSource.Log.EndBenchmark(this.DisplayName, iterations);
+            BenchmarkEventSource.Log.BenchmarkStop(this.DisplayName, iterations);
             return Tuple.Create(executionTime, string.Format("Iterations = {0}, CollectGarbage = {1}", iterations, collectGarbage));
         }
     }
