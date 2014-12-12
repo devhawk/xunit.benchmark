@@ -50,9 +50,16 @@
     <Reference Include="xunit.execution, Version=2.0.0.2794, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\packages\xunit.execution.2.0.0-beta5-build2794\lib\net45\xunit.execution.dll</HintPath>
     </Reference>
+    <Reference Include="xunit.runner.utility">
+      <HintPath>..\packages\xunit.runner.utility.2.0.0-beta5-build2794\lib\net35\xunit.runner.utility.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ListInsertBenchmark.cs" />
+    <Compile Include="DictionaryAddBenchmarks.cs" />
+    <Compile Include="DictionaryHelpers.cs" />
+    <Compile Include="DictionaryTryGetBenchmarks.cs" />
+    <Compile Include="IndexerBenchmarks.cs" />
+    <Compile Include="ListInsertBenchmarks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

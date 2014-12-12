@@ -1,17 +1,14 @@
 ﻿using Microsoft.Xunit;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-
-public class ListInsertBenchmark
+public class ListInsertBenchmarks
 {
     //TODO: support data driven benchmarks - https://github.com/devhawk/xunit.benchmark/issues/1
-    void Insert_without_capacity_helper(ITracer tracer, int count)
+
+    void InsertHelper(ITracer tracer, int count, bool setCapacity)
     {
-        var ls = new List<int>(0);
+        var ls = new List<int>(setCapacity ? count : 0);
 
         using (tracer.Trace())
         {
@@ -21,53 +18,50 @@ public class ListInsertBenchmark
             }
         }
     }
-
-    void Insert_with_capacity_helper(ITracer tracer, int count)
+    
+    void InsertNoCapacityHelper(ITracer tracer, int count)
     {
-        var ls = new List<int>(count);
+        InsertHelper(tracer, count, false);
+    }
 
-        using (tracer.Trace())
-        {
-            for (int i = 0; i < count; i++)
-            {
-                ls.Add(i);
-            }
-        }
+    void InsertWithCapacityHelper(ITracer tracer, int count)
+    {
+        InsertHelper(tracer, count, true);
     }
 
     [Benchmark]
     public void Insert_1_element_without_capacity(ITracer tracer)
     {
-        Insert_without_capacity_helper(tracer, 1);
+        InsertNoCapacityHelper(tracer, 1);
     }
 
     [Benchmark]
     public void Insert_50_element_without_capacity(ITracer tracer)
     {
-        Insert_without_capacity_helper(tracer, 50);
+        InsertNoCapacityHelper(tracer, 50);
     }
 
     [Benchmark]
     public void Insert_500_element_without_capacity(ITracer tracer)
     {
-        Insert_without_capacity_helper(tracer, 500);
+        InsertNoCapacityHelper(tracer, 500);
     }
 
     [Benchmark]
     public void Insert_1_element_with_capacity(ITracer tracer)
     {
-        Insert_with_capacity_helper(tracer, 1);
+        InsertWithCapacityHelper(tracer, 1);
     }
 
     [Benchmark]
     public void Insert_50_element_with_capacity(ITracer tracer)
     {
-        Insert_with_capacity_helper(tracer, 50);
+        InsertWithCapacityHelper(tracer, 50);
     }
 
     [Benchmark]
     public void Insert_500_element_with_capacity(ITracer tracer)
     {
-        Insert_with_capacity_helper(tracer, 500);
+        InsertWithCapacityHelper(tracer, 500);
     }
 }
