@@ -85,16 +85,26 @@ public void SampleBenchmark()
 ```
 
 ### Step Five: Execute Benchmarks
-Benchmarks are executed using the same test runner as normal xUnit.net tests.
+Benchmarks are executed using the same test runner as normal xUnit.net tests. 
+In order to get detailed information about the benchmark test run, use the
+-XML option to save the test run output results as an XML file. 
 
 ```
 > xunit.console MyBenchmarkAssembly.dll -XML benchmarkResults.xml
 ```
 
-Note: There is a PR out for the main xUnit.net project to improve the precision
-of execution time emitted in the test results file when using the -XML option.
-Additionally, this PR updates the test result file to include custom information
-about the benchmark run (iterations executed, was garbage collected, etc.)
+Note: Full details of benchmark test runs are not currently available in the 
+test run output results XML file due to a couple of bugs in [xUnit.net 2.0
+beta 5](https://github.com/xunit/xunit/releases/tag/2.0-beta-5). There is a 
+[PR](https://github.com/xunit/xunit/pull/230) out for the main xUnit.net 
+project to address the following issues:
+
+* ITestResultMessage.Output is not included in the output results. 
+xUnit.benchmark uses this field to record additional information about the 
+test run (number of iterations, was garbage collected before each run, etc).
+* ITestResultMessage.ExecutionTime is rounded to only three decimal places 
+of precision in the output results. For many benchmarks, this level of 
+precision is not sufficient. 
 
 ### Step Six: ETW Support
 
