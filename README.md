@@ -84,29 +84,43 @@ public void SampleBenchmark()
 }
 ```
 
-### Step Five: Execute Benchmarks
-Benchmarks are executed using the same test runner as normal xUnit.net tests. 
+### Step Five: Build Benchmarks
+
+For best results, benchmarks should be built in release configuration. The
+xUnit.benchmark repo includes a batch file named build.cmd that builds both the
+main xUnit.benchmark assembly as well as an included sample benchmark project in
+release mode.
+
+Build.cmd also does a NuGet restore on the solution file. [MsBuild-Integrated
+Package Restore](http://docs.nuget.org/docs/reference/package-restore) is
+enabled for the project, but that only restores project-level dependencies. In
+order to actually run the benchmarks, you also need to restore the 
+solution-level dependency on the [xunit.runners
+package](https://www.nuget.org/packages/xunit.runners/2.0.0-beta5-build2785).
+
+### Step Six: Execute Benchmarks
+Benchmarks are executed using the same test runner as normal xUnit.net tests.
 In order to get detailed information about the benchmark test run, use the
--XML option to save the test run output results as an XML file. 
+-XML option to save the test run output results as an XML file.
 
 ```
 > xunit.console MyBenchmarkAssembly.dll -XML benchmarkResults.xml
 ```
 
-Note: Full details of benchmark test runs are not currently available in the 
+Note: Full details of benchmark test runs are not currently available in the
 test run output results XML file due to a couple of bugs in [xUnit.net 2.0
-beta 5](https://github.com/xunit/xunit/releases/tag/2.0-beta-5). There is a 
-[PR](https://github.com/xunit/xunit/pull/230) out for the main xUnit.net 
+beta 5](https://github.com/xunit/xunit/releases/tag/2.0-beta-5). There is a
+[PR](https://github.com/xunit/xunit/pull/230) out for the main xUnit.net
 project to address the following issues:
 
-* ITestResultMessage.Output is not included in the output results. 
-xUnit.benchmark uses this field to record additional information about the 
+* ITestResultMessage.Output is not included in the output results.
+xUnit.benchmark uses this field to record additional information about the
 test run (number of iterations, was garbage collected before each run, etc).
-* ITestResultMessage.ExecutionTime is rounded to only three decimal places 
-of precision in the output results. For many benchmarks, this level of 
-precision is not sufficient. 
+* ITestResultMessage.ExecutionTime is rounded to only three decimal places
+of precision in the output results. For many benchmarks, this level of
+precision is not sufficient.
 
-### Step Six: ETW Support
+## ETW Support
 
 In addition to typical stopwatch performance testing, xunit.benchmark raises
 custom ETW events at the start/end of every benchmark, benchmark iteration and
