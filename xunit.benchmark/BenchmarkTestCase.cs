@@ -12,7 +12,8 @@ namespace Microsoft.Xunit
     class BenchmarkTestCase : TestMethodTestCase
     {
         public BenchmarkTestCase(ITestMethod testMethod)
-            : base(TestMethodDisplay.ClassAndMethod, testMethod)
+            //: base(TestMethodDisplay.ClassAndMethod, testMethod)
+            : base(testMethod)
         {
         }
     }
