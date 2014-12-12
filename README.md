@@ -1,47 +1,102 @@
-# xunit.benchmark
+# Performance Testing with xUnit.benchmark
 
-Benchmarking extension for [xunit.net](http://xunit.github.io/)
+xUnit.benchmark is a custom test framework for [xUnit.net](http://xunit.github.io/).
+It enables you to execute performance benchmarks using the xUnit.net test
+runner(s).
 
-## Example
+## Quickstart
+
+### Step One: Add TestFramework Attribute
+
+In order to use a custom test framework in xUnit.net, you need to specify the
+assembly level [TestFramework] attribute. The [TestFramework] attribute tells
+the xUnit.net test runner that you are using a custom test framework in this
+assembly. The parameters on the [TestFramework] specify the type and assembly
+name for the custom test framework used by the assembly.
+
+Add the following line to the AssemblyInfo.cs file in your test project to enable
+xUnit.benchmark.
 
 ```csharp
-using Xunit;
-using Microsoft.Xunit;
+[assembly: Xunit.TestFramework("Microsoft.Xunit.BenchmarkTestFramework", "Xunit.Benchmark")]
+```
 
-// xunit.benchmark is implemented as an xunit.net 2.0 custom test frameworks. 
-// This assembly attribute enables xunit.benchmark for this assembly
-[assembly: TestFramework("Microsoft.Xunit.BenchmarkTestFramework", "Microsoft.Xunit.Benchmark")]
+### Step Two: Add Benchmarks
 
-public class ListInsertBenchmark
+xUnit.benchmark tests are indicated with the [Benchmark] attribute, similarly to
+how traditional xUnit tests use [Fact] or [Theory]. Note, you cannot mix
+[Benchmark] tests with [Fact] or [Theory] tests in the same assembly.
+
+```csharp
+[Benchmark]
+public void SampleBenchmark()
 {
-    // xunit.benchmark uses [Benchmark] instead of xunit's typical [Fact]
-    // [Benchmark] supports the following named parameters:
-    //   Iterations -     Specifies the number of iterations of the benchmark to run. 
-    //                    Defaults to 50 if unspecifed.
-    //   CollectGarbage - Specifies if garbage collector should be explicitly run before
-    //                    each benchmark iteration. Defaults to false if unspecified.
-    [Benchmark]
-    public void CapacityInsertFiveHundred(ITracer tracer) // Benchmarks optionally take an 
-                                                          // ITracer parameter to demark the 
-                                                          // specific part of the method to test
-    {
-        // setup all instances needed as part of the benchmark
-        const int count = 500;
-        var ls = new List<int>(count);
-
-        // Call ITracer.Trace to indicate the portion of the method to benchmark.
-        // ITracer.Trace returns an IDisposable so you can put the portion of the 
-        // method to benchmark inside a using statement
-        using (tracer.Trace())
-        {
-            for (int i = 0; i < count; i++)
-            {
-                ls.Add(i);
-            }
-        }
-
-        // if there is any cleanup for the benchmark, it goes after the Trace using statement
-    }
+    // code to benchmark here
 }
+```
+
+### Step Three: Add Tracer Support (optional)
+
+Benchmarks optionally support tracing to demark the specific part of the method
+to time. This is useful if your test has time-consuming setup or teardown
+operations that you don't want to include in the test execution time.
+
+To add tracer support, declare a single parameter in your benchmark method of
+type [ITracer](https://github.com/devhawk/xunit.benchmark/blob/master/xunit.benchmark/ITracer.cs).
+ITracer has a single method Trace that you call right before the code you want
+to benchmark. Trace returns an IDisposable which you dispose right after the
+code you want to benchmark. This pattern makes it easy to wrap the code you want
+to benchmark in a using(tracer.Trace()) block.
+
+```csharp
+[Benchmark]
+public void SampleBenchmarkWithTracingSupport(ITracer tracer)
+{
+    // time consuming setup here
+
+    using (tracer.Trace())
+    {
+        // code to benchmark here
+    }
+
+    // time consuming teardown here
+}
+```
+
+### Step Four: Customize Benchmark Execution (optional)
+
+[Benchmark] supports the following named parameters:
+ * Iterations: Specifies the number of iterations of the benchmark to run.
+ Defaults to 50 if unspecifed.
+ * CollectGarbage: Specifies if garbage collector should be explicitly run
+ before each benchmark iteration. Defaults to false if unspecified.
+
+```csharp
+[Benchmark(Iterations=100, CollectGarbage=true)]
+public void SampleBenchmark()
+{
+}
+```
+
+### Step Five: Execute Benchmarks
+Benchmarks are executed using the same test runner as normal xUnit.net tests.
 
 ```
+> xunit.console MyBenchmarkAssembly.dll -XML benchmarkResults.xml
+```
+
+Note: There is a PR out for the main xUnit.net project to improve the precision
+of execution time emitted in the test results file when using the -XML option.
+Additionally, this PR updates the test result file to include custom information
+about the benchmark run (iterations executed, was garbage collected, etc.)
+
+### Step Six: ETW Support
+
+In addition to typical stopwatch performance testing, xunit.benchmark raises
+custom ETW events at the start/end of every benchmark, benchmark iteration and
+when benchmark tracing starts and stops. This allows you to use tools such as
+[PerfView](http://channel9.msdn.com/Series/PerfView-Tutorial) to get more
+detailed performance information about the benchmarks, including context switches,
+garbage collection and even hardware counters.
+
+TODO: add PerfView benchmarking tutorial.
