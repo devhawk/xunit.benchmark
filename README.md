@@ -24,10 +24,16 @@ xUnit.benchmark.
 ### Step Two: Add Benchmarks
 
 xUnit.benchmark tests are indicated with the [Benchmark] attribute, similarly to
-how traditional xUnit tests use [Fact] or [Theory]. Note, you cannot mix
-[Benchmark] tests with [Fact] or [Theory] tests in the same assembly.
+how traditional xUnit tests use [Fact] or [Theory]. The [Benchmark] attribute is
+in the Microsoft.Xunit namespace, so you probably want to add a using statement
+at the top of your each of your benchmark code files.
+
+Note, you cannot mix [Benchmark] tests with [Fact] or [Theory] tests in the
+same assembly.
 
 ```csharp
+using Microsoft.Xunit;
+
 [Benchmark]
 public void SampleBenchmark()
 {
