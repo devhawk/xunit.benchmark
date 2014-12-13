@@ -125,7 +125,7 @@ precision is not sufficient.
 In addition to typical stopwatch performance testing, xunit.benchmark raises
 custom ETW events at the start/end of every benchmark, benchmark iteration and
 when benchmark tracing starts and stops. This allows you to use tools such as
-[PerfView](http://channel9.msdn.com/Series/PerfView-Tutorial) to get more
+[PerfView](http://www.microsoft.com/en-us/download/details.aspx?id=28567) to get more
 detailed performance information about the benchmarks, including context switches,
 garbage collection and even hardware counters.
 
