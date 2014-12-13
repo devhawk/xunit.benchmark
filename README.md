@@ -130,3 +130,14 @@ detailed performance information about the benchmarks, including context switche
 garbage collection and even hardware counters.
 
 TODO: add PerfView benchmarking tutorial.
+
+You can collect ETW traces on the command line with PerfView. Execute the 
+following from an elevated command prompt. Note, this example assumes you have 
+PerfView, xunit.console.exe and your benchmark assembly (sample.xunit.benchmark.dll
+in this example) in the same directory. 
+
+```
+> PerfView.exe -nogui -providers:*Microsoft-Xunit-Benchmark "-KernelEvents:Default,ContextSwitch" run xunit.console.exe sample.xunit.benchmark.dll
+
+```
+
