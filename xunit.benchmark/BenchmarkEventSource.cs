@@ -18,16 +18,16 @@ namespace Microsoft.Xunit
         }
 
         [Event(1, Opcode = EventOpcode.Start, Task = Tasks.Benchmark)]
-        public void BenchmarkStart(string benchmarkName, int iterations) { WriteEvent(1, benchmarkName, iterations); }
+        public void BenchmarkStart(string BenchmarkName, int Iterations) { WriteEvent(1, BenchmarkName, Iterations); }
 
         [Event(2, Opcode = EventOpcode.Stop, Task = Tasks.Benchmark)]
-        public void BenchmarkStop(string benchmarkName, int iterations) { WriteEvent(2, benchmarkName, iterations); }
+        public void BenchmarkStop(string BenchmarkName, int Iterations) { WriteEvent(2, BenchmarkName, Iterations); }
 
         [Event(3, Opcode = EventOpcode.Start, Task = Tasks.BenchmarkIteration)]
-        public void BenchmarkIterationStart(int iteration) { WriteEvent(3, iteration); }
+        public void BenchmarkIterationStart(int Iteration) { WriteEvent(3, Iteration); }
 
         [Event(4, Opcode = EventOpcode.Stop, Task = Tasks.BenchmarkIteration)]
-        public void BenchmarkIterationStop(int iteration) { WriteEvent(4, iteration); }
+        public void BenchmarkIterationStop(int Iteration) { WriteEvent(4, Iteration); }
 
         [Event(5, Opcode = EventOpcode.Start, Task = Tasks.BenchmarkTrace)]
         public void BenchmarkTraceStart() { WriteEvent(5); }
