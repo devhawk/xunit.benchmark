@@ -33,7 +33,15 @@ namespace Microsoft.Xunit
                 if (benchmarkAttribute == null)
                     continue;
 
-                var testCase = new BenchmarkTestCase(new TestMethod(testClass, method));
+                var iterations = benchmarkAttribute.GetNamedArgument<int>("Iterations");
+                if (iterations <= 0)
+                {
+                    iterations = 50;
+                }
+
+                var collectGarbage = benchmarkAttribute.GetNamedArgument<bool>("CollectGarbage");
+
+                var testCase = new BenchmarkTestCase(new TestMethod(testClass, method), iterations, collectGarbage);
 
                 if (!ReportDiscoveredTestCase(testCase, includeSourceInformation, messageBus))
                     return false;
