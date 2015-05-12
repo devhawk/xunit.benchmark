@@ -15,9 +15,12 @@ namespace Microsoft.Xunit
         public int Iterations { get; private set; }
         public bool CollectGargage { get; private set; }
 
+        public BenchmarkTestCase()
+        {
+        }
+
         public BenchmarkTestCase(ITestMethod testMethod, int iterations, bool collectGarbage)
-            //: base(TestMethodDisplay.ClassAndMethod, testMethod)
-            : base(testMethod)
+            : base(TestMethodDisplay.ClassAndMethod, testMethod)
         {
             Iterations = iterations;
             CollectGargage = collectGarbage;

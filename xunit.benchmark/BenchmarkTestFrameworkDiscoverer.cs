@@ -12,11 +12,11 @@ namespace Microsoft.Xunit
     {
         readonly CollectionPerClassTestCollectionFactory testCollectionFactory;
 
-        public BenchmarkTestFrameworkDiscoverer(IAssemblyInfo assemblyInfo, ISourceInformationProvider sourceInformationProvider)
-            : base(assemblyInfo, sourceInformationProvider, null)
+        public BenchmarkTestFrameworkDiscoverer(IAssemblyInfo assemblyInfo, ISourceInformationProvider sourceInformationProvider, IMessageSink diagnosticMessageSink)
+            : base(assemblyInfo, sourceInformationProvider, diagnosticMessageSink)
         {
             var testAssembly = new TestAssembly(assemblyInfo, AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
-            testCollectionFactory = new CollectionPerClassTestCollectionFactory(testAssembly);
+            testCollectionFactory = new CollectionPerClassTestCollectionFactory(testAssembly, DiagnosticMessageSink);
         }
 
         protected override ITestClass CreateTestClass(ITypeInfo @class)
@@ -24,8 +24,7 @@ namespace Microsoft.Xunit
             return new TestClass(testCollectionFactory.Get(@class), @class);
         }
 
-        //protected override bool FindTestsForType(ITestClass testClass, bool includeSourceInformation, IMessageBus messageBus, ITestFrameworkOptions discoveryOptions)
-        protected override bool FindTestsForType(ITestClass testClass, bool includeSourceInformation, IMessageBus messageBus)
+        protected override bool FindTestsForType(ITestClass testClass, bool includeSourceInformation, IMessageBus messageBus, ITestFrameworkDiscoveryOptions discoveryOptions)
         {
             foreach (var method in testClass.Class.GetMethods(false))
             {

@@ -11,21 +11,21 @@ namespace Microsoft.Xunit
 {
     class BenchmarkTestFrameworkExecutor : TestFrameworkExecutor<BenchmarkTestCase>
     {
-        public BenchmarkTestFrameworkExecutor(AssemblyName assemblyName, ISourceInformationProvider sourceInformationProvider)
-            : base(assemblyName, sourceInformationProvider)
+        public BenchmarkTestFrameworkExecutor(AssemblyName assemblyName, ISourceInformationProvider sourceInformationProvider, IMessageSink diagnosticMessageSink)
+            : base(assemblyName, sourceInformationProvider, diagnosticMessageSink)
         {
         }
 
         protected override ITestFrameworkDiscoverer CreateDiscoverer()
         {
-            return new BenchmarkTestFrameworkDiscoverer(AssemblyInfo, SourceInformationProvider);
+            return new BenchmarkTestFrameworkDiscoverer(AssemblyInfo, SourceInformationProvider, DiagnosticMessageSink);
         }
 
-        protected override async void RunTestCases(IEnumerable<BenchmarkTestCase> testCases, IMessageSink messageSink, ITestFrameworkOptions executionOptions)
+        protected override async void RunTestCases(IEnumerable<BenchmarkTestCase> testCases, IMessageSink executionMessageSink, ITestFrameworkExecutionOptions executionOptions)
         {
             var testAssembly = new TestAssembly(AssemblyInfo, AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
 
-            using (var assemblyRunner = new BenchmarkTestAssemblyRunner(testAssembly, testCases, messageSink, executionOptions))
+            using (var assemblyRunner = new BenchmarkTestAssemblyRunner(testAssembly, testCases, DiagnosticMessageSink, executionMessageSink, executionOptions))
             {
                 await assemblyRunner.RunAsync();
             }
