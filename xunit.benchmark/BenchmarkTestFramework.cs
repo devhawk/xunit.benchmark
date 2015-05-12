@@ -9,14 +9,19 @@ namespace Microsoft.Xunit
 {
     public class BenchmarkTestFramework : TestFramework
     {
+        public BenchmarkTestFramework(IMessageSink diagnosticMessageSink)
+            : base(diagnosticMessageSink)
+        {
+        }
+
         protected override ITestFrameworkDiscoverer CreateDiscoverer(IAssemblyInfo assemblyInfo)
         {
-            return new BenchmarkTestFrameworkDiscoverer(assemblyInfo, SourceInformationProvider);
+            return new BenchmarkTestFrameworkDiscoverer(assemblyInfo, SourceInformationProvider, DiagnosticMessageSink);
         }
 
         protected override ITestFrameworkExecutor CreateExecutor(System.Reflection.AssemblyName assemblyName)
         {
-            return new BenchmarkTestFrameworkExecutor(assemblyName, SourceInformationProvider);
+            return new BenchmarkTestFrameworkExecutor(assemblyName, SourceInformationProvider, DiagnosticMessageSink);
         }
     }
 }

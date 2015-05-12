@@ -12,8 +12,8 @@ namespace Microsoft.Xunit
 {
     class BenchmarkTestClassRunner : TestClassRunner<BenchmarkTestCase>
     {
-        public BenchmarkTestClassRunner(ITestClass testClass, IReflectionTypeInfo @class, IEnumerable<BenchmarkTestCase> testCases, IMessageBus messageBus, ITestCaseOrderer testCaseOrderer, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
-            : base(testClass, @class, testCases, messageBus, testCaseOrderer, aggregator, cancellationTokenSource)
+        public BenchmarkTestClassRunner(ITestClass testClass, IReflectionTypeInfo @class, IEnumerable<BenchmarkTestCase> testCases, IMessageSink diagnosticMessageSink, IMessageBus messageBus, ITestCaseOrderer testCaseOrderer, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
+            : base(testClass, @class, testCases, diagnosticMessageSink, messageBus, testCaseOrderer, aggregator, cancellationTokenSource)
         {
         }
 

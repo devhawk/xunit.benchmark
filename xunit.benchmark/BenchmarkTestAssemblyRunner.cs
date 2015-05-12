@@ -12,8 +12,8 @@ namespace Microsoft.Xunit
 {
     class BenchmarkTestAssemblyRunner : TestAssemblyRunner<BenchmarkTestCase>
     {
-        public BenchmarkTestAssemblyRunner(ITestAssembly testAssembly, IEnumerable<BenchmarkTestCase> testCases, IMessageSink messageSink, ITestFrameworkOptions executionOptions)
-            : base(testAssembly, testCases, messageSink, executionOptions)
+        public BenchmarkTestAssemblyRunner(ITestAssembly testAssembly, IEnumerable<BenchmarkTestCase> testCases, IMessageSink diagnosticMessageSink, IMessageSink messageSink, ITestFrameworkExecutionOptions executionOptions)
+            : base(testAssembly, testCases, diagnosticMessageSink, messageSink, executionOptions)
         {
         }
 
@@ -24,7 +24,7 @@ namespace Microsoft.Xunit
 
         protected override Task<RunSummary> RunTestCollectionAsync(IMessageBus messageBus, ITestCollection testCollection, IEnumerable<BenchmarkTestCase> testCases, CancellationTokenSource cancellationTokenSource)
         {
-            return new BenchmarkTestCollectionRunner(testCollection, testCases, messageBus, TestCaseOrderer, new ExceptionAggregator(Aggregator), cancellationTokenSource).RunAsync();
+            return new BenchmarkTestCollectionRunner(testCollection, testCases, DiagnosticMessageSink, messageBus, TestCaseOrderer, new ExceptionAggregator(Aggregator), cancellationTokenSource).RunAsync();
         }
     }
 }

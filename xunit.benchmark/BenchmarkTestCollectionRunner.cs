@@ -12,14 +12,17 @@ namespace Microsoft.Xunit
 {
     class BenchmarkTestCollectionRunner : TestCollectionRunner<BenchmarkTestCase>
     {
-        public BenchmarkTestCollectionRunner(ITestCollection testCollection, IEnumerable<BenchmarkTestCase> testCases, IMessageBus messageBus, ITestCaseOrderer testCaseOrderer, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
+        private readonly IMessageSink diagnosticMessageSink;
+
+        public BenchmarkTestCollectionRunner(ITestCollection testCollection, IEnumerable<BenchmarkTestCase> testCases, IMessageSink diagnosticMessageSink, IMessageBus messageBus, ITestCaseOrderer testCaseOrderer, ExceptionAggregator aggregator, CancellationTokenSource cancellationTokenSource)
             :base(testCollection, testCases, messageBus, testCaseOrderer, aggregator, cancellationTokenSource)
         {
+            this.diagnosticMessageSink = diagnosticMessageSink;
         }
 
         protected override Task<RunSummary> RunTestClassAsync(ITestClass testClass, IReflectionTypeInfo @class, IEnumerable<BenchmarkTestCase> testCases)
         {
-            return new BenchmarkTestClassRunner(testClass, @class, testCases, MessageBus, TestCaseOrderer, new ExceptionAggregator(Aggregator), CancellationTokenSource).RunAsync();
+            return new BenchmarkTestClassRunner(testClass, @class, testCases, this.diagnosticMessageSink, MessageBus, TestCaseOrderer, new ExceptionAggregator(Aggregator), CancellationTokenSource).RunAsync();
         }
     }
 }
